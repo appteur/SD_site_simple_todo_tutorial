@@ -1,0 +1,13 @@
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# handle 4 parameters for mobile access service
+RewriteRule ^api/mas/(.*)/(.*)/(.*)/(.*)$ api/mas/public/landing.php?api_version=$1&namespace=$2&class=$3&method=$4 [QSA,NC,L]
+# handle 3 parameters for mobile access service
+RewriteRule ^api/mas/(.*)/(.*)/(.*)$ api/mas/public/landing.php?api_version=$1&namespace=$2&class=$3&method=none [QSA,NC,L]
+
+</IfModule>
